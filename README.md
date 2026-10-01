@@ -1,2 +1,3 @@
 # JTEC-HQ-LABS
-My project at building an enterprise network 
+Hands-on Cisco networking portfolio documenting enterprise network design,
+configuration, verification and troubleshooting using Cisco Packet Tracer.
