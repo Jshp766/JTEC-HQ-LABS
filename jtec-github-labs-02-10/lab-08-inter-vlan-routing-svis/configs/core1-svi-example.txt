@@ -1,0 +1,49 @@
+! JTEC CORE1 Layer 3 configuration examples
+
+ip routing
+ipv6 unicast-routing
+
+interface Vlan10
+ ip address 10.10.2.129 255.255.255.224
+ ipv6 address 2001:D88:10:10::1/64
+ no shutdown
+
+interface Vlan20
+ ip address 10.10.1.1 255.255.255.128
+ ipv6 address 2001:D88:10:20::1/64
+ no shutdown
+
+interface Vlan30
+ ip address 10.10.2.1 255.255.255.192
+ ipv6 address 2001:D88:10:30::1/64
+ no shutdown
+
+interface Vlan40
+ ip address 10.10.2.161 255.255.255.224
+ ipv6 address 2001:D88:10:40::1/64
+ no shutdown
+
+interface Vlan50
+ ip address 10.10.2.65 255.255.255.192
+ ipv6 address 2001:D88:10:50::1/64
+ no shutdown
+
+interface Vlan60
+ ip address 10.10.1.129 255.255.255.128
+ ipv6 address 2001:D88:10:60::1/64
+ no shutdown
+
+interface Vlan70
+ ip address 10.10.0.1 255.255.255.0
+ ipv6 address 2001:D88:10:70::1/64
+ no shutdown
+
+interface Vlan80
+ ip address 10.10.2.193 255.255.255.224
+ ipv6 address 2001:D88:10:80::1/64
+ no shutdown
+
+interface Vlan99
+ ip address 10.10.99.1 255.255.255.224
+ ipv6 address 2001:D88:10:99::1/64
+ no shutdown

@@ -1,0 +1,6 @@
+! JTEC VLAN access-port example
+! Replace the interface/VLAN with the exact port used in the Packet Tracer topology.
+
+interface GigabitEthernet0/10
+ switchport mode access
+ switchport access vlan 30
