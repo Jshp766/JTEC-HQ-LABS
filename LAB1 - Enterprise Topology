@@ -1,0 +1,126 @@
+# Lab 1 – Enterprise topology
+
+## Objective
+
+Create the physical and logical topology of the network i will be working on
+
+## Network Environment
+
+The JTEC lab environment represents a small enterprise network built using Cisco Packet Tracer. The topology uses a redundant core-and-access switching design, with multiple VLANs and Layer 3 switching implemented at the core.
+
+The main devices include:
+
+CORE1 – Primary Layer 3 core switch responsible for inter-VLAN routing and providing default gateways through Switch Virtual Interfaces (SVIs).
+CORE2 – Secondary core switch providing network redundancy and forming an LACP EtherChannel with CORE1.
+ACCESS1–ACCESS4 – Access-layer switches connecting end-user devices and extending VLANs into the access network.
+End devices – PCs, laptops and servers representing users and network resources.
+Routers – Used where required for WAN/routing scenarios and connectivity beyond the local switching infrastructure.
+
+Topology Design
+
+The network follows a simplified three-tier enterprise design, with the core switches providing the central Layer 3 infrastructure and the access switches connecting end devices.
+The core switches use redundant links to improve availability. VLAN traffic is carried between switches using 802.1Q trunking, while inter-VLAN communication is handled by the Layer 3 core through SVIs.
+
+The topology also incorporates Spanning Tree Protocol (STP) to prevent Layer 2 loops and EtherChannel/LACP to combine multiple physical links into a single logical connection between the core switches.
+
+This design allows the labs to demonstrate both normal network operation and failure scenarios, including VLAN/trunk issues, routing problems, EtherChannel failures and STP path selection.
+
+## Technologies
+
+- Cisco IOS
+- Packet Tracer
+
+## Configuration
+
+The JTEC network uses a combination of Layer 2 switching and Layer 3 routing configuration. The key configuration varies between labs, but the following represents the main configuration implemented so far.
+
+VLAN Configuration
+
+Multiple VLANs were created to logically segment the network:
+VLAN 10 - Management
+VLAN 20 - Users
+VLAN 30 - Sales
+VLAN 40 - Finance
+VLAN 50 - Servers
+VLAN 60 - Voice
+VLAN 70 - Guest
+VLAN 80 - NET-MGMT
+VLAN 99 - Native
+
+Trunk links were configured between the access and core switches to transport multiple VLANs:
+
+interface GigabitEthernet1/4
+ switchport mode trunk
+ switchport trunk native vlan 99
+ switchport trunk allowed vlan 10,20,30,40,50,60,70,80,99
+
+Inter-VLAN Routing
+
+CORE1 was configured as a Layer 3 switch:
+
+ip routing
+ipv6 unicast-routing
+
+SVIs were configured to provide default gateways for the VLANs. For example:
+
+interface Vlan10
+ ip address 10.10.2.129 255.255.255.224
+ ipv6 address 2001:D88:10:10::1/64
+ no shutdown
+
+SSH Management
+
+Secure remote management was configured using SSH:
+
+ip domain-name jtec.local
+crypto key generate rsa
+ip ssh version 2
+
+Local authentication was enabled:
+
+username admin privilege 15 secret <REDACTED>
+
+VTY lines were restricted to SSH:
+
+line vty 0 4
+ login local
+ transport input ssh
+ exec-timeout 5 0
+LACP EtherChannel
+
+CORE1 and CORE2 were connected using two physical Gigabit Ethernet links combined into Port-Channel1 using LACP:
+
+interface range GigabitEthernet1/6 - 7
+ channel-group 1 mode active
+
+The logical Port-Channel was then configured as a trunk:
+
+interface Port-channel1
+ switchport mode trunk
+ switchport trunk native vlan 99
+ switchport trunk allowed vlan 10,20,30,40,50,60,70,80,99
+Spanning Tree
+
+Spanning Tree was used to control the Layer 2 topology and prevent switching loops. Verification was performed using:
+
+show spanning-tree
+show spanning-tree vlan 20
+
+This was particularly important when analysing the redundant CORE1/CORE2 links and determining the root port and forwarding state.
+
+Verification Commands
+
+Configuration was verified using Cisco IOS operational commands rather than relying solely on configuration output:
+
+show ip interface brief
+show vlan brief
+show interfaces trunk
+show interfaces switchport
+show mac address-table
+show cdp neighbors
+show ip route
+show etherchannel summary
+show spanning-tree
+ping
+
+These commands were used to confirm interface state, VLAN membership, trunk operation, Layer 3 routing, EtherChannel formation, STP operation and end-to-end connectivity.
