@@ -62,9 +62,8 @@ technologies alongside structured troubleshooting and documentation.
 | 11 | Spanning Tree Protocol | In Progress |
 
 ## Network Topology
+<img width="1436" height="525" alt="image" src="https://github.com/user-attachments/assets/df7e917b-c8cd-49aa-b559-9db270840ee9" /> 
 
-![JTEC Enterprise Network](<img width="1436" height="525" alt="image" src="https://github.com/user-attachments/assets/fa4efd4b-b149-4eb2-aa1b-e65ebf21fbcc" />
-)
 
 ## Network Architecture
 
