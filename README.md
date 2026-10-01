@@ -61,6 +61,11 @@ technologies alongside structured troubleshooting and documentation.
 | 10 | LACP EtherChannel | Complete |
 | 11 | Spanning Tree Protocol | In Progress |
 
+## Network Topology
+
+![JTEC Enterprise Network](<img width="1436" height="525" alt="image" src="https://github.com/user-attachments/assets/fa4efd4b-b149-4eb2-aa1b-e65ebf21fbcc" />
+)
+
 ## Network Architecture
 
 The lab environment represents a multi-layer enterprise network
